@@ -11,14 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('packeges', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->date('departure');
-            $table->date('arrival');
-            $table->integer('quantity');
-            $table->decimal('sum', 10, 2)->default(0);
-            $table->uuid('travel_id')->nullable()->index();
-            $table->uuid('user_id')->nullable()->index();
+            $table->text('head');
+            $table->text('body');
+            $table->text('footer');
+            $table->json('included')->nullable();
+            $table->decimal('price', 10, 2)->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('packeges');
     }
 };

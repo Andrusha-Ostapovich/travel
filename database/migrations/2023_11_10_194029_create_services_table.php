@@ -12,8 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('services', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
+            $table->text('name');
+            $table->decimal('price', 10, 2)->default(0);
             $table->timestamps();
+            $table->uuid('day_id')->nullable()->index();
+            $table->uuid('excursion_id')->nullable()->index();
         });
     }
 
